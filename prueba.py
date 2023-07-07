@@ -66,6 +66,7 @@ def datos_relevantes():
     regj = []
     regk = []
     regl = []
+    reglint = []
     dic = {}
 
     for j,k,l in zip(mes_inicio, provincia_destino, viajeros):
@@ -74,11 +75,15 @@ def datos_relevantes():
                 regk.append(k)
                 regl.append(l)
                 #for(m,n,o) in zip(j,k,l):
-            
-    reglint = list(map(int, l))
-    for j,k,l in zip(regj, regk, regl):
-        maximo = max(list(map(int, l)))
-        print(j,k,l)
+
+    reglint = list(map(int, regl))
+    maximo = max(reglint)
+    
+    for j,k,l in zip(regj, regk, reglint):
+        if l == maximo:
+            print(j,k,l)
+        
+        
 
 
 """         maximo = max(list(map(int, l)))
