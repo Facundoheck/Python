@@ -55,9 +55,11 @@ def datos_relevantes():
             print(datos)
         else:
             print('No existe la lista de datos')
-            
+    
+    #una vez que terminamos de usar el archivo previaje.csv, lo cerramos con el siguiente comando      
     archivo_previaje.close()
 
+#llamada a la funcion
 #datos_relevantes()
 '''
 #-----------------Funcion masViajeros---------------------------
@@ -78,39 +80,46 @@ viajeros = []
 def masViajeros():
 
     lectura_previaje = csv.reader(archivo_previaje)
-
+    #se le solicita al usuario que ingrese un mes y un año y guardamos en dos variables distintas
     mes = input('ingrese mes: ')
     año_c = input('ingrese año: ')
+    #guardamos en una variable el dato ubicado en la tercera posicion del input del usuario 202X
     año = año_c[3]
 
     #fecha = []
     #fecha = str(año_c+'-'+mes)
     #print(fecha)
 
+    #iteramos sobre el archivo que contiene los datos del csv
     for i in lectura_previaje:
-
+        #creamos listas nuevas para guardar las columnas de "mes de inicio", "provincia destino" y "viajeros"
         str(mes_inicio.append(i[0]))
         provincia_destino.append(i[2])
         viajeros.append(i[4])
     
+    #inicializamos variables de tipo lista 
     regj = []
     regk = []
     regl = []
     reglint = []
 
+    #iteramos con 3 variables dentro de las listas que contienen los datos antes mencionados, utilizamos el zip() para combinar las listas
     for j,k,l in zip(mes_inicio, provincia_destino, viajeros):
-            if j[3] == año and j[5:] == mes:
+            #guardamos en tres nuevas listas los mismos datos de listas que comparten  "mes inicio"  
+            if j[3] == año and j[5:] == mes: 
                 regj.append(j)
                 regk.append(k)
                 regl.append(l)
-
+    #guardamos en una nueva lista pasando a enteros los datos de la lista "viajeros"
     reglint = list(map(int, regl))
+    #guardamos en una variable el maximo de esta lista para comparar con las listas combinadas asi podemos tener el indice de este mismo dato que comparte con mes_inicio y provincia destino
     maximo = max(reglint)
-    
+    #iteramos nuevamente sobre las tres listas
     for j,k,l in zip(regj, regk, reglint):
+        #comparamos la lista que contiene la cantidad de viajeros con el maximo extraído anteriormente
         if l == maximo:
             print('La provincia que mas viajeros recibió en el año',año_c,'y en el mes',mes,'es',k,'con una cantidad de',l,'viajeros')
-    
+    #una vez que terminamos de usar el archivo previaje.csv, lo cerramos con el siguiente comando
     archivo_previaje.close()
-
+#llamada a la funcion
 masViajeros()
