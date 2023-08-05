@@ -7,27 +7,27 @@ class Producto:
     self.precio = precio
 
 def agregarProducto(inventario):
-  id=input('Codigo de producto: ')
+  id=int(input('Codigo de producto: '))
   descripcion=input('Descripcion: ')
   marca=input('Marca: ')
-  stock=input('Cantidad en stock: ')
-  precio=input('Precio: ')
+  stock=int(input('Cantidad en stock: '))
+  precio=float(input('Precio: '))
   prod=Producto(id,descripcion,marca,stock,precio)
   inventario[id]=prod
 
 def actualizarExistencia(inventario):
-  id=input('Codigo de producto: ')
-  cantidad=input('Cantidad en stock: ')
+  id=int(input('Codigo de producto: '))
+  cantidad=int(input('Cantidad en stock: '))
   prod=inventario.get(id)
   if prod:
-    prod.stock = cantidad
+    prod.stock=cantidad
     print('Stock del producuto actualizado con éxito')
   else:  
     print('No existe el producto')
 
 def actualizarPrecio(inventario):
-  id=input('Codigo de producto: ')
-  precio=input('Precio de producto: ')
+  id=int(input('Codigo de producto: '))
+  precio=float(input('Precio de producto: '))
   prod=inventario.get(id)
   if prod:
     prod.precio=precio
@@ -47,20 +47,18 @@ def mostrarInventario(inventario):
 def main():
   inventario={}
   while True:
-    eleccion = input(str("Menu:\n a: Agregar productos\n b: Actualizar existencias\n c: Actualizar precio\n d: Mostrar inventario\n e: Salir\n"))
+    eleccion = str(input("Menu:\n a: Agregar productos\n b: Actualizar existencias\n c: Actualizar precio\n d: Mostrar inventario\n e: Salir\n"))
     if eleccion == 'a':
       agregarProducto(inventario)
-      main()
     elif eleccion == 'b':
       actualizarExistencia(inventario)
-      main()
     elif eleccion == 'c':
       actualizarPrecio(inventario)
-      main()
     elif eleccion == 'd':
       mostrarInventario(inventario)
-      main()
     elif eleccion == 'e':
       break
+    else:
+      print('Opcion invalida, intente nuevamente')
 
 main()
