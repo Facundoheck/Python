@@ -16,14 +16,14 @@ def agregarProducto(inventario):
   inventario[id]=prod
 
 def actualizarExistencia(inventario):
-    id=input('Codigo de producto: ')
-    cantidad=input('Cantidad en stock: ')
-    prod=inventario.get(id)
-    if prod:
-      prod.stock = cantidad
-      print('Stock del producuto actualizado con éxito')
-    else:  
-      print('No existe el producto')
+  id=input('Codigo de producto: ')
+  cantidad=input('Cantidad en stock: ')
+  prod=inventario.get(id)
+  if prod:
+    prod.stock = cantidad
+    print('Stock del producuto actualizado con éxito')
+  else:  
+    print('No existe el producto')
 
 def actualizarPrecio(inventario):
   id=input('Codigo de producto: ')
@@ -36,15 +36,21 @@ def actualizarPrecio(inventario):
     print('No existe el producto')
 
 def mostrarInventario(inventario):
-    
+  for id,producto in inventario.items():
+    print('Codigo:',producto.id)
+    print('Descripcion:',producto.descripcion)
+    print('Marca:',producto.marca)
+    print('Cantidad en stock:',producto.stock)
+    print('Precio:',producto.precio)
+    print('-'*30)
 
 def main():
   inventario={}
   while True:
     eleccion = input(str("Menu:\n a: Agregar productos\n b: Actualizar existencias\n c: Actualizar precio\n d: Mostrar inventario\n e: Salir\n"))
     if eleccion == 'a':
-        agregarProducto(inventario)
-        main()
+      agregarProducto(inventario)
+      main()
     elif eleccion == 'b':
       actualizarExistencia(inventario)
       main()
