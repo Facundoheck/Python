@@ -1,4 +1,4 @@
-##Gestor de contraseñas
+## Gestor de contraseñas
 Gestor de contraseñas simple. Cuenta con 5 opciones:
 '''
 a. Agregar un nuevo usuario y clave
