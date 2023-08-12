@@ -1,5 +1,7 @@
 import json
-diccionario=dict
+
+#inicializar diccionario
+diccionario={}
 
 #constructor de la clase
 class Gestor:
@@ -62,17 +64,17 @@ def opciones():
         elif opcion=='d':
             verId(diccionario)
         elif opcion=='e':
+            with open('pass.json', 'w') as archivo:
+                json.dump(diccionario, archivo)
             break
         else: 
-            print('Opcion incorrecta, intente nuevamente')
-
-# Guardar datos en un archivo JSON
-with open('pass.json', 'w') as archivo:
-    json.dump(diccionario, archivo)
-
-# Cargar datos desde el archivo JSON
-with open('pass.json', 'r') as archivo:
-    diccionario = json.load(archivo)
+            print('Opción incorrecta, intente nuevamente')
+        
+try: 
+    #cargar datos desde el archivo JSON
+    with open('pass.json', 'r') as archivo:
+        diccionario = json.load(archivo)
+except FileNotFoundError:
+    pass
 
 opciones()
-#print(archivo)
