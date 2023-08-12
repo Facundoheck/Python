@@ -1,4 +1,5 @@
-#diccionario=dict
+import json
+diccionario=dict
 
 #constructor de la clase
 class Gestor:
@@ -50,7 +51,6 @@ def verId(diccionario):
         print('Descripcion: ',reg.desc)
         print('*'*30)
 def opciones():
-    diccionario={}
     while True:
         opcion=input('a. Agregar un usuario y una clave\nb. Actualizar clave\nc. Actualizar usuario\nd. Ver usuario y clave\ne. Salir\nIngrese opcion: ')
         if opcion=='a':
@@ -66,4 +66,13 @@ def opciones():
         else: 
             print('Opcion incorrecta, intente nuevamente')
 
+# Guardar datos en un archivo JSON
+with open('pass.json', 'w') as archivo:
+    json.dump(diccionario, archivo)
+
+# Cargar datos desde el archivo JSON
+with open('pass.json', 'r') as archivo:
+    diccionario = json.load(archivo)
+
 opciones()
+#print(archivo)
