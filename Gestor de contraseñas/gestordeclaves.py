@@ -3,13 +3,28 @@ import json
 #inicializar diccionario
 diccionario={}
 
-#constructor de la clase
+#constructor de la clase gestor
 class Gestor:
     def __init__(self,id,usr,psw,desc):
         self.id=id
         self.usr=usr
         self.psw=psw
         self.desc=desc
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "usr": self.usr,
+            "psw": self.psw,
+            "desc": self.desc
+        }
+
+    @classmethod
+    def from_json(cls, json_data):
+        return cls(json_data["id"], json_data["usr"], json_data["psw"], json_data["desc"])
+
+#cargar datos desde json
+loaddatos=from_json()
 
 #defino nuevas funciones para el gestor
 def nuevoRegistro(diccionario):
@@ -52,6 +67,7 @@ def verId(diccionario):
         print('Clave: ',reg.psw)
         print('Descripcion: ',reg.desc)
         print('*'*30)
+
 def opciones():
     while True:
         opcion=input('a. Agregar un usuario y una clave\nb. Actualizar clave\nc. Actualizar usuario\nd. Ver usuario y clave\ne. Salir\nIngrese opcion: ')
@@ -64,16 +80,17 @@ def opciones():
         elif opcion=='d':
             verId(diccionario)
         elif opcion=='e':
-            with open('pass.json', 'w') as archivo:
-                json.dump(diccionario, archivo)
             break
-        else: 
+        else:
             print('Opción incorrecta, intente nuevamente')
-        
-try: 
-    #cargar datos desde el archivo JSON
-    with open('pass.json', 'r') as archivo:
-        diccionario = json.load(archivo)
+
+#ver la carga de datos desde el archivo json
+
+try:
+    with open('pass.json', 'w') as archivo:
+        datos_json=[registros.to_json() for registros in diccionario.values()]
+        json.dump(datos_json, archivo)
+
 except FileNotFoundError:
     pass
 
