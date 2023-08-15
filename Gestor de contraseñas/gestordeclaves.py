@@ -23,8 +23,15 @@ class Gestor:
     def from_json(cls, json_data):
         return cls(json_data["id"], json_data["usr"], json_data["psw"], json_data["desc"])
 
-#cargar datos desde json
-loaddatos=from_json()
+try:
+    with open('pass.json', 'r') as archivo:
+        datos_json = json.load(archivo)
+        for registro_json in datos_json:
+            registro = Gestor.from_json(registro_json)
+            diccionario[registro.id] = registro
+
+except FileNotFoundError:
+    pass
 
 #defino nuevas funciones para el gestor
 def nuevoRegistro(diccionario):
@@ -83,8 +90,6 @@ def opciones():
             break
         else:
             print('Opción incorrecta, intente nuevamente')
-
-#ver la carga de datos desde el archivo json
 
 try:
     with open('pass.json', 'w') as archivo:
