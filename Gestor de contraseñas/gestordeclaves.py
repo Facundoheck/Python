@@ -34,14 +34,15 @@ class UserManager:
     def actualizarContraseña(self,user,nueva_psw):
         username = self.users.get(user)
         if username:
-            self.users.psw=nueva_psw
+            username.psw=nueva_psw
             print('*'*30)
             print('Clave actualizada con éxito')
             print('*'*30)
 
     def actualizarUsuario(self,user,nuevo_user):
-        if user==self.users.get(user):
-            self.users.user=nuevo_user
+        username = self.users.pop(user)
+        if username:
+            self.users[nuevo_user] = user 
             print('*'*30)
             print('Usuario actualizado con éxito')
             print('*'*30)
@@ -79,7 +80,7 @@ def main():
             manager.actualizarContraseña(user,nueva_psw)
         elif opcion=='3':
             user=input('Usuario: ')
-            nuevo_user=('Ingrese nuevo usuario: ')
+            nuevo_user=input('Ingrese nuevo usuario: ')
             manager.actualizarUsuario(user,nuevo_user)
         elif opcion=='4':
             manager.listaUsuario()
