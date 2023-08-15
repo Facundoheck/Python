@@ -4,82 +4,73 @@ import json
 diccionario={}
 
 #constructor de la clase gestor
-class Gestor:
-    def __init__(self,id,usr,psw,desc):
-        self.id=id
-        self.usr=usr
+class Usuario:
+    def __init__(self,user,psw,desc):
+        self.user=user
         self.psw=psw
         self.desc=desc
-
-    def to_json(self):
+    
+    def toDict(self):
         return {
-            "id": self.id,
-            "usr": self.usr,
-            "psw": self.psw,
-            "desc": self.desc
+            "Usuario" : Usuario.user,
+            "Contraseña" : Usuario.psw
         }
-
+    
     @classmethod
-    def from_json(cls, json_data):
-        return cls(json_data["id"], json_data["usr"], json_data["psw"], json_data["desc"])
+    def fromDict(cls,user_dic):
+        return cls(user_dic["Usuario"],user_dic["Contraseña"])
 
-try:
-    with open('pass.json', 'r') as archivo:
-        datos_json = json.load(archivo)
-        for registro_json in datos_json:
-            registro = Gestor.from_json(registro_json)
-            diccionario[registro.id] = registro
-
-except FileNotFoundError:
-    pass
+class UserManager:
+    def __init__(self):
+        self.users = {}
 
 #defino nuevas funciones para el gestor
-def nuevoRegistro(diccionario):
-    id=input('Id: ')
-    desc=input('Descripcion: ')
-    usr=input('Usuario: ')
+def nuevoRegistro(self,user,psw,desc):
+    user=input('Usuario: ')
     psw=input('Constraseña: ')
-    gestor=Gestor(id,usr,psw,desc)
-    diccionario[id]=gestor
-    print('*'*30)
-    print('Nuevo usuario añadido con éxito')
-    print('*'*30)
+    desc=input('Descripcion: ')
+    if user not in self.users:
+        self.users[user]=Usuario(user,psw,desc)
+        print('*'*30)
+        print('Nuevo usuario añadido con éxito')
+        print('*'*30)
+    else:
+        print('El usuario ya existe')
 
-def actualizarContraseña(diccionario):
-    id=input('Id: ')
-    psw=input('Contraseña: ')
-    reg=diccionario.get(id)
-    if reg:
-        reg.psw=psw
+def actualizarContraseña(self,user,nueva_psw):
+    user=input('Usuario: ')
+    if user == self.users.get(user):
+        nueva_psw=input('Nueva contraseña: ')
+        self.users.psw=nueva_psw
         print('*'*30)
         print('Clave actualizada con éxito')
         print('*'*30)
 
-def actualizarUsuario(diccionario):
-    id=input('Id: ')
-    usr=input('Usuario: ')
-    reg=diccionario.get(id)
-    if reg:
-        reg.usr=usr
+def actualizarUsuario(self,user):
+    user=input('Usuario: ')
+    if user==self.users.get(user):
+        nuevo_user=('Ingrese nuevo usuario: ')
+        self.users.user=nuevo_user
         print('*'*30)
         print('Usuario actualizado con éxito')
         print('*'*30)
+    else:
+        print('El usuario ingresado no existe')
 
-def verId(diccionario):
-    id=input('Id: ')
-    reg=diccionario.get(id)
-    if reg:
+def verId(self,user):
+    user=input('Usuario: ')
+    if self.users.user==user:
         print('*'*30)
-        print('Usuario: ',reg.usr)
-        print('Clave: ',reg.psw)
-        print('Descripcion: ',reg.desc)
+        print('Usuario: ',self.users.user)
+        print('Clave: ',self.users.psw)
+        print('Descripcion: ',self.users.desc)
         print('*'*30)
 
-def opciones():
+""" def opciones():
     while True:
         opcion=input('a. Agregar un usuario y una clave\nb. Actualizar clave\nc. Actualizar usuario\nd. Ver usuario y clave\ne. Salir\nIngrese opcion: ')
         if opcion=='a':
-            nuevoRegistro(diccionario)
+            nuevoRegistro()
         elif opcion=='b':
             actualizarContraseña(diccionario)
         elif opcion=='c':
@@ -90,13 +81,5 @@ def opciones():
             break
         else:
             print('Opción incorrecta, intente nuevamente')
-
-try:
-    with open('pass.json', 'w') as archivo:
-        datos_json=[registros.to_json() for registros in diccionario.values()]
-        json.dump(datos_json, archivo)
-
-except FileNotFoundError:
-    pass
-
+ """
 opciones()
