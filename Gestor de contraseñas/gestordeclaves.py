@@ -32,7 +32,8 @@ class UserManager:
             print('*'*30)
 
     def actualizarContraseña(self,user,nueva_psw):
-        if user == self.users.get(user):
+        username = self.users.get(user)
+        if username:
             self.users.psw=nueva_psw
             print('*'*30)
             print('Clave actualizada con éxito')
