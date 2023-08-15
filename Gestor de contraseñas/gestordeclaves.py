@@ -67,7 +67,7 @@ def main():
     manager = UserManager()
 
     while True:
-        opcion=input('1. Agregar un usuario y una clave\n2. Actualizar clave\n3. Actualizar usuario\n4. Ver usuario y clave\n5. Salir\n6. Exportar datos a JSON\nIngrese opcion: ')
+        opcion=input('1. Agregar un usuario y una clave\n2. Actualizar clave\n3. Actualizar usuario\n4. Ver usuario y clave\n5. Exportar datos a JSON\n6. Salir\nIngrese opcion: ')
         if opcion=='1':
             user=input('Usuario: ')
             psw=input('Constraseña: ')
