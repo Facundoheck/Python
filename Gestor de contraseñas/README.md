@@ -9,5 +9,3 @@
 5. Exportar datos a JSON
 6. Salir
 ````
-<p>En todas las opciones se solicita un ID obligatorio que puede ser a eleccion del usuario para administrar cada entrada.</p>
-<p>El mismo se le va a solicitar en caso de que necesite hacer una modificación o para verificar los datos antes ingresados.</p>
