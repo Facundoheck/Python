@@ -1,4 +1,3 @@
-# Algunos ejercicios
 ## Ejercicios_simples.py
 ### Ejercicio1:
 Para el primer ejercicio tuve que escribir una funcion que reciba una lista de numeros enteros y devuelva true si los mismos estaban ordenados de manera ascendente.
