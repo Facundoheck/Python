@@ -20,8 +20,6 @@ def nuevaTarea(tareas_registro):
     tareas_registro[id]=tarea
 
 
-
-
 #------------------#BASE DE DATOS------------------#------------------#------------------#------------------
 
 #establezco la conexión a la base de datos (se crea si no existe)
@@ -46,7 +44,7 @@ rows = cursor.fetchall()
 for row in rows:
     print(row) """
 
-#------------------#------------------#------------------#------------------#------------------
+#------------------#PROGRAMA PRINCIPAL------------------#------------------#------------------#------------------
 
 # Create the main window
 window = tk.Tk()
@@ -54,7 +52,7 @@ window.title("Tareas")
 window.geometry("400x300")
 
 # Create a label to display the pickup lines
-label = tk.Label(window, text="Haga click en el boton para agregar una tarea")
+label = tk.Label(window, text="Administrador de tareas")
 label.pack(pady=20)
 
 # Create a button
@@ -63,10 +61,12 @@ button = tk.Button(window, text="Agregar",command=nuevaTarea)
 
 button.pack()
 
+
+
 # Start the main event loop
 window.mainloop()
 
-#------------------#------------------#------------------#------------------#------------------
+#------------------#CIERRE BD------------------#------------------#------------------#------------------
 
 # Cerrar el cursor
 cursor.close()
