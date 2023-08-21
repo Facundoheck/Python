@@ -1,3 +1,5 @@
+#------------------#LIBRERIAS------------------#------------------#------------------#------------------
+
 import tkinter as tk
 import sqlite3
 
@@ -18,6 +20,39 @@ def nuevaTarea(tareas_registro):
     completada=int(input('Completada (1-si/0-no): '))
     tarea=Tarea(id,nombre,descripcion,completada)
     tareas_registro[id]=tarea
+
+def AgregarProducto(self):
+        self.ventanaProducto= Toplevel()
+        self.ventanaProducto.title("Nueva tarea")#nombre de productos
+        
+        self.frame = tk.Frame(self.ventanaProducto) #Frame sirve para contener a los widgets
+        self.frame.pack(padx=90, pady=60) #Aca se le asigna el tamaño
+
+        self.codigo=tk.Label(self.frame, text="Codigo de la tarea") #Crea una etiqueta
+        self.entry = tk.Entry(self.frame) #Campo de entrada de texto
+        self.codigo.pack()
+        self.entry.pack() #empaqueta la entrada de texto
+        
+        
+        self.descripcion=tk.Label(self.frame, text="Descripción") 
+        self.entry1 = tk.Entry(self.frame) 
+        self.descripcion.pack()
+        self.entry1.pack() 
+        
+        
+        self.marca=tk.Label(self.frame, text="Completada (1-si/0-no): ") 
+        self.entry2 = tk.Entry(self.frame) 
+        self.marca.pack()
+        self.entry2.pack() 
+        
+        self.button = tk.Button(self.frame, text="Guardar",command=self.guardarEnInventario) #Se le da el comando al boton de que guarde en el inventario lo ingresado
+        self.precio.pack()
+        self.entry4.pack() 
+        self.button.pack()
+       
+        self.Volver = tk.Button(self.frame, text="Volver",command=self.ventanaProducto.destroy)
+        self.Volver.pack()
+
 
 
 #------------------#BASE DE DATOS------------------#------------------#------------------#------------------
